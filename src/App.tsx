@@ -27,8 +27,8 @@ function App() {
 
 function NotFound() {
     return (
-        <div className="text-center text-red-500 font-bold text-4xl">
-            404 - Not Found
+        <div className="text-center  font-bold text-4xl">
+            Not yet
         </div>
     );
 }

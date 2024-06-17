@@ -20,7 +20,7 @@ function Question() {
 
     return (
         <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg border border-white">
-            <h1 className="text-2xl font-bold mb-4">First Question</h1>
+            <h1 className="text-2xl font-bold mb-4">1</h1>
             <div>
                 <h2 className="text-xl mb-4">{question}</h2>
                 {answers.map((answer, index) => (

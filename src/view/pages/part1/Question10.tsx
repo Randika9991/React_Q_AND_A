@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Question2() {
+function Question10() {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState(false);
 
@@ -9,27 +9,33 @@ function Question2() {
         setIsCorrect(answer === correctAnswer);
     };
 
-    const question = "When was React first released?";
-    const answers = ["2011", "2013", "2015", "2017"];
-    const correctAnswer = "2013"; // Assuming the correct answer is 2013
+    const question = "What is not a front-end framework in Java?";
+    const answers = [
+        "React",
+        "Angular",
+        "Vue.js",
+        "Spring"
+    ];
+
+    const correctAnswer = "Spring";
 
     return (
         <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg border border-white">
-            <h1 className="text-2xl font-bold mb-4">2</h1>
+            <h1 className="text-2xl font-bold mb-4">10</h1>
             <div>
                 <h2 className="text-xl mb-4">{question}</h2>
                 {answers.map((answer, index) => (
                     <div key={index} className="mb-2">
                         <input
                             type="radio"
-                            id={`secondAnswer${index}`}
-                            name="secondAnswers"
+                            id={`frontEndFrameworkAnswer${index}`}
+                            name="frontEndFrameworkAnswers"
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}
                             className="mr-2"
                         />
-                        <label htmlFor={`secondAnswer${index}`}>{answer}</label>
+                        <label htmlFor={`frontEndFrameworkAnswer${index}`}>{answer}</label>
                     </div>
                 ))}
             </div>
@@ -42,4 +48,4 @@ function Question2() {
     );
 }
 
-export default Question2;
+export default Question10;
