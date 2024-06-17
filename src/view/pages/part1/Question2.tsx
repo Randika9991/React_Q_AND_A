@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function Question2() {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -8,27 +8,28 @@ function Question2() {
         setSelectedAnswer(answer);
         setIsCorrect(answer === correctAnswer);
     };
-    const question = "What is the largest planet in our solar system?";
-    const answers = ["Earth", "Mars", "Jupiter", "Venus"];
-    const correctAnswer = "Jupiter";
+
+    const question = "When was React first released?";
+    const answers = ["2011", "2013", "2015", "2017"];
+    const correctAnswer = "2013"; // Assuming the correct answer is 2013
 
     return (
         <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg border border-white">
-            <h1 className="text-2xl font-bold mb-4">First Question</h1>
+            <h1 className="text-2xl font-bold mb-4">Second Question</h1>
             <div>
                 <h2 className="text-xl mb-4">{question}</h2>
                 {answers.map((answer, index) => (
                     <div key={index} className="mb-2">
                         <input
                             type="radio"
-                            id={`firstAnswer${index}`}
-                            name="firstAnswers"
+                            id={`secondAnswer${index}`}
+                            name="secondAnswers"
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}
                             className="mr-2"
                         />
-                        <label htmlFor={`firstAnswer${index}`}>{answer}</label>
+                        <label htmlFor={`secondAnswer${index}`}>{answer}</label>
                     </div>
                 ))}
             </div>
