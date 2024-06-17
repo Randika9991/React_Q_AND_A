@@ -6,6 +6,7 @@ import Home from "./view/pages/Home/Home";
 import PartOneCollection from "./view/pages/anyQuestion/PartOneCollection";
 import NavBar from "./view/common/NavBar/NavBar";
 import {Footer} from "./view/common/Footer/Footer";
+import User from "./view/pages/user/User";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/quest1" element={<PartOneCollection />} />
+                    <Route path="/user" element={<User />} />
                 </Routes>
                 <Footer/>
             </BrowserRouter>

@@ -6,10 +6,8 @@ export class NavBar extends Component {
     constructor(props: {}) {
         super(props);
         const storedUsername = localStorage.getItem('login');
-        const yourName = localStorage.getItem('yourName'); // Retrieve yourName from localStorage
         this.state = {
             isLoggedIn: storedUsername === "hi",
-            yourName: yourName, // Set yourName in the state
         };
     }
 
@@ -20,7 +18,7 @@ export class NavBar extends Component {
 
     render() {
         // @ts-ignore
-        const { isLoggedIn, yourName } = this.state;
+        const { isLoggedIn } = this.state;
         return (
             <div className="p-4 bg-gray-700 flex items-center justify-between">
                 <div className="flex items-center">
@@ -38,10 +36,10 @@ export class NavBar extends Component {
                                     <Link to="/quest1">Part 1</Link>
                                 </li>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/contact">Part 2</Link>
+                                    <Link to="/quest2">Part 2</Link>
                                 </li>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/shopping-cart">My Cart</Link>
+                                    <Link to="/quest3">Part 3</Link>
                                 </li>
                             </>
                         )}
@@ -53,7 +51,7 @@ export class NavBar extends Component {
                         {isLoggedIn ? (
                             <>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    hello {yourName}
+                                    <Link to="/user">About</Link>
                                 </li>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
                                     <Link to="/">
