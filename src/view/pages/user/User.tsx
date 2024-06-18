@@ -3,18 +3,6 @@ import './User.css';
 import { Link } from "react-router-dom";
 
 export class User extends Component<any, any> {
-    componentDidMount() {
-        const storedUsername = localStorage.getItem('login');
-        const hasReloaded = localStorage.getItem('hasReloaded');
-
-        if (storedUsername === "hi" && hasReloaded === "hui") {
-            localStorage.setItem('hasReloaded', 'ammo'); // Set the flag
-            window.location.reload();
-        } else if (hasReloaded) {
-            localStorage.removeItem('hasReloaded'); // Clear the flag after reload
-        }
-    }
-
     render() {
         const yourName = localStorage.getItem('yourName'); // Retrieve yourName from localStorage
         return (
