@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Question6() {
+function shuffleArray(array: string[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function Question6({ number }: { number: number }) {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState(false);
-
-    const handleAnswerSelection = (answer: string) => {
-        setSelectedAnswer(answer);
-        setIsCorrect(answer === correctAnswer);
-    };
 
     const question = "What is the DOM in web development?";
     const answers = [
@@ -16,15 +19,25 @@ function Question6() {
         "A data representation of the objects that comprise the structure and content of a document on the web",
         "A web server technology"
     ];
-
     const correctAnswer = "A data representation of the objects that comprise the structure and content of a document on the web";
+
+    const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
+
+    useEffect(() => {
+        setShuffledAnswers(shuffleArray([...answers]));
+    }, []);
+
+    const handleAnswerSelection = (answer: string) => {
+        setSelectedAnswer(answer);
+        setIsCorrect(answer === correctAnswer);
+    };
 
     return (
         <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg border border-white">
-            <h1 className="text-2xl font-bold mb-4">6</h1>
+            <h1 className="text-2xl font-bold mb-4">{number}</h1>
             <div>
                 <h2 className="text-xl mb-4">{question}</h2>
-                {answers.map((answer, index) => (
+                {shuffledAnswers.map((answer, index) => (
                     <div key={index} className="mb-2">
                         <input
                             type="radio"

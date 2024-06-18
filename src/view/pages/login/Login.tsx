@@ -57,7 +57,7 @@ export class login extends Component {
                         style={{ backgroundColor: '#61dafb', color: '#fff' }}
                         onClick={this.handleClick}>
                         {isLoggedIn ? (
-                            <Link to="/">Submit</Link>
+                            <Link to="/user">Submit</Link>
                         ) : (
                             "Submit"
                         )}

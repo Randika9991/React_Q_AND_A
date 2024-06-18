@@ -1,11 +1,10 @@
-/* Ensure the background color covers the entire viewport */
 
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #282c34; /* Full background color */
-    color: #fff; /* Default text color */
+    background-color: #282c34;
+    color: #fff;
 }
 
 .intro-container {
@@ -26,6 +25,13 @@ body {
 .intro-text {
     font-size: 16px;
     color: #959595;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.intro-text-part{
+    font-size: 16px;
+    color: cyan;
     margin-bottom: 10px;
     font-weight: 800;
 }

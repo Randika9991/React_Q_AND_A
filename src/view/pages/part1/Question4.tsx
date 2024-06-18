@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Question4() {
+function shuffleArray(array: string[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function Question4({ number }: { number: number }) {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState(false);
-
-    const handleAnswerSelection = (answer: string) => {
-        setSelectedAnswer(answer);
-        setIsCorrect(answer === correctAnswer);
-    };
 
     const question = "What is the main difference between Real DOM and Virtual DOM in web development?";
     const answers = [
@@ -16,15 +19,25 @@ function Question4() {
         "Real DOM is faster than Virtual DOM for rendering complex applications.",
         "Virtual DOM is a part of the browser's rendering engine, while Real DOM is implemented by JavaScript libraries like React."
     ];
-
     const correctAnswer = "Real DOM directly updates the browser's display, while Virtual DOM updates a lightweight copy of the Real DOM first.";
+
+    const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
+
+    useEffect(() => {
+        setShuffledAnswers(shuffleArray([...answers]));
+    }, []);
+
+    const handleAnswerSelection = (answer: string) => {
+        setSelectedAnswer(answer);
+        setIsCorrect(answer === correctAnswer);
+    };
 
     return (
         <div className="p-6 bg-gray-800 text-white rounded-lg shadow-lg border border-white">
-            <h1 className="text-2xl font-bold mb-4">4</h1>
+            <h1 className="text-2xl font-bold mb-4">{number}</h1>
             <div>
                 <h2 className="text-xl mb-4">{question}</h2>
-                {answers.map((answer, index) => (
+                {shuffledAnswers.map((answer, index) => (
                     <div key={index} className="mb-2">
                         <input
                             type="radio"
