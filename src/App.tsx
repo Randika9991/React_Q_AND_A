@@ -17,9 +17,9 @@ function App() {
                 <Routes>
                     <Route path="*" element={<NotFound />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/" element={<Home />} />
+                    <Route path="/home" element={<Home />} />
                     <Route path="/quest1" element={<PartOneCollection />} />
-                    <Route path="/user" element={<User />} />
+                    <Route path="/" element={<User />} />
                 </Routes>
                 <Footer/>
             </BrowserRouter>

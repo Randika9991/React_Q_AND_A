@@ -28,7 +28,7 @@ export class NavBar extends Component {
                     </h1>
                     <ul className="list-none flex">
                         <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                            <Link to="/">Home</Link>
+                            <Link to="/home">Home</Link>
                         </li>
                         {isLoggedIn && (
                             <>
@@ -51,10 +51,10 @@ export class NavBar extends Component {
                         {isLoggedIn ? (
                             <>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/user">About</Link>
+                                    <Link to="/">About</Link>
                                 </li>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/">
+                                    <Link to="/home">
                                         <button onClick={this.handleLogout}>Logout</button>
                                     </Link>
                                 </li>
