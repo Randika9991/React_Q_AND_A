@@ -25,6 +25,9 @@ export class User extends Component<any, any> {
                         This project is designed to provide a platform for learning and testing your knowledge of React.
                         It consists of a series of questions and answers related to React concepts, frameworks, libraries, and best practices.
                     </p>
+                    <p className="intro-text-part">
+                        Additionally, this project is a great resource for preparing for React-related interview questions.
+                    </p>
                     <p className="intro-text">
                         Features of this project include:
                     </p>
