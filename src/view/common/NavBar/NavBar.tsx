@@ -57,9 +57,6 @@ class NavBar extends Component<NavBarProps> {
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
                                     <Link to="/">Login</Link>
                                 </li>
-                                <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/register">Register</Link>
-                                </li>
                             </>
                         )}
                     </ul>

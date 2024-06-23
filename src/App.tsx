@@ -42,7 +42,7 @@ function App() {
                     ) : (
                         <>
                             <Route path="/" element={<Login onLogin={handleLogin} />} />
-                            <Route path="*" element={<Navigate to="/login" />} />
+                            <Route path="*" element={<Navigate to="/home" />} />
                             <Route path="/home" element={<Home />} />
                         </>
                     )}
