@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -7,29 +7,30 @@ function shuffleArray(array: string[]) {
     }
     return array;
 }
+
 interface QuestionProps {
     number: number;
-    shuffleAnswers?: () => void;
 }
 
-function Question({ number, shuffleAnswers }: QuestionProps){
+function Question({ number }: QuestionProps) {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "What is React?";
-    const answers = [
+    const correctAnswer = "A JavaScript library for building user interfaces";
+
+    const answers = useMemo(() => [
         "A type of database",
         "A CSS framework",
         "A Python library",
         "A JavaScript library for building user interfaces"
-    ];
-    const correctAnswer = "A JavaScript library for building user interfaces";
+    ], []);
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -13,20 +13,20 @@ function Question3({ number }: { number: number }) {
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "One of the most significant drawbacks of React, as with any technology, is its:";
-    const answers = [
+    const correctAnswer = "Steep Learning Curve";
+
+    const answers = useMemo(() => [
         "Steep Learning Curve",
         "Complexity of Ecosystem",
         "Boilerplate Code",
         "Performance Overhead"
-    ];
-    const correctAnswer = "Steep Learning Curve";
-
+    ], []);
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);

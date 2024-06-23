@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -8,19 +8,24 @@ function shuffleArray(array: string[]) {
     return array;
 }
 
-function Question2({ number }: { number: number })  {
+interface QuestionProps {
+    number: number;
+}
+
+function Question2({ number }: QuestionProps) {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "When was React first released?";
-    const answers = ["2011", "2013", "2015", "2017"];
-    const correctAnswer = "2013"; // Assuming the correct answer is 2013
+    const correctAnswer = "2013";
+
+    const answers = useMemo(() => ["2011", "2013", "2015", "2017"], []);
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);

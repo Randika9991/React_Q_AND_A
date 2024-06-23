@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -13,19 +13,20 @@ function Question6({ number }: { number: number }) {
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "What is the DOM in web development?";
-    const answers = [
+    const correctAnswer = "A data representation of the objects that comprise the structure and content of a document on the web";
+
+    const answers = useMemo(() => [
         "A design pattern for structuring code",
         "A programming language",
         "A data representation of the objects that comprise the structure and content of a document on the web",
         "A web server technology"
-    ];
-    const correctAnswer = "A data representation of the objects that comprise the structure and content of a document on the web";
+    ], []);
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);
@@ -42,7 +43,7 @@ function Question6({ number }: { number: number }) {
                         <input
                             type="radio"
                             id={`domAnswer${index}`}
-                            name="domAnswers"
+                            name={`domAnswers-${number}`}
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -13,19 +13,20 @@ function Question9({ number }: { number: number }) {
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "What is the purpose of using JSX in React?";
-    const answers = [
+    const  answers = useMemo(() =>  [
         "To define styling for React components",
         "To interact with the browser's Document Object Model (DOM)",
         "To define the structure of React components with a syntax similar to HTML (Instead of adding JavaScript to HTML, you can embed HTML inside JavaScript using JSX)",
         "To handle asynchronous data fetching in React applications"
-    ];
+    ],[]);
+
     const correctAnswer = "To define the structure of React components with a syntax similar to HTML (Instead of adding JavaScript to HTML, you can embed HTML inside JavaScript using JSX)";
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);
@@ -41,14 +42,14 @@ function Question9({ number }: { number: number }) {
                     <div key={index} className="mb-2">
                         <input
                             type="radio"
-                            id={`jsxPurposeAnswer${index}`}
-                            name="jsxPurposeAnswers"
+                            id={`jsxPurposeAnswer${number}-${index}`}
+                            name={`jsxPurposeAnswers${number}`}
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}
                             className="mr-2"
                         />
-                        <label htmlFor={`jsxPurposeAnswer${index}`}>{answer}</label>
+                        <label htmlFor={`jsxPurposeAnswer${number}-${index}`}>{answer}</label>
                     </div>
                 ))}
             </div>

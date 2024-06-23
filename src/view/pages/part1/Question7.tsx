@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -13,19 +13,19 @@ function Question7({ number }: { number: number }) {
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "Which of the following statements is true regarding Angular and React?";
-    const answers = [
+    const answers = useMemo(() =>  [
         "Angular is a library, React is a framework.",
         "React uses a virtual DOM, Angular uses a real DOM.",
         "Angular is maintained by Google, React is maintained by Facebook.",
         "React supports two-way data binding, Angular does not."
-    ];
+    ],[]);
     const correctAnswer = "Angular is maintained by Google, React is maintained by Facebook.";
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);
@@ -41,14 +41,14 @@ function Question7({ number }: { number: number }) {
                     <div key={index} className="mb-2">
                         <input
                             type="radio"
-                            id={`angularVsReactAnswer${index}`}
-                            name="angularVsReactAnswers"
+                            id={`angularVsReactAnswer${number}-${index}`}
+                            name={`angularVsReactAnswers${number}`}
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}
                             className="mr-2"
                         />
-                        <label htmlFor={`angularVsReactAnswer${index}`}>{answer}</label>
+                        <label htmlFor={`angularVsReactAnswer${number}-${index}`}>{answer}</label>
                     </div>
                 ))}
             </div>

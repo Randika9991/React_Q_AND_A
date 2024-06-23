@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -13,19 +13,19 @@ function Question10({ number }: { number: number }) {
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "What is not a front-end framework in Java?";
-    const answers = [
+    const answers = useMemo(() =>  [
         "React",
         "Angular",
         "Vue.js",
         "Spring"
-    ];
+    ],[]);
     const correctAnswer = "Spring";
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);
@@ -41,14 +41,14 @@ function Question10({ number }: { number: number }) {
                     <div key={index} className="mb-2">
                         <input
                             type="radio"
-                            id={`frontEndFrameworkAnswer${index}`}
-                            name="frontEndFrameworkAnswers"
+                            id={`frontEndFrameworkAnswer${number}-${index}`}
+                            name={`frontEndFrameworkAnswers${number}`}
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}
                             className="mr-2"
                         />
-                        <label htmlFor={`frontEndFrameworkAnswer${index}`}>{answer}</label>
+                        <label htmlFor={`frontEndFrameworkAnswer${number}-${index}`}>{answer}</label>
                     </div>
                 ))}
             </div>

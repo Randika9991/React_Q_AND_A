@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -13,19 +13,20 @@ function Question5({ number }: { number: number }) {
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "Who created React?";
-    const answers = [
+    const correctAnswer = "Facebook";
+
+    const answers = useMemo(() => [
         "Google",
         "Facebook",
         "Twitter",
         "Microsoft"
-    ];
-    const correctAnswer = "Facebook";
+    ], []);
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);
@@ -42,7 +43,7 @@ function Question5({ number }: { number: number }) {
                         <input
                             type="radio"
                             id={`creatorOfReactAnswer${index}`}
-                            name="creatorOfReactAnswers"
+                            name={`creatorOfReactAnswers-${number}`}
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}

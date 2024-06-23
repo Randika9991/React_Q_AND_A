@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 function shuffleArray(array: string[]) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -13,19 +13,20 @@ function Question4({ number }: { number: number }) {
     const [isCorrect, setIsCorrect] = useState(false);
 
     const question = "What is the main difference between Real DOM and Virtual DOM in web development?";
-    const answers = [
+    const correctAnswer = "Real DOM directly updates the browser's display, while Virtual DOM updates a lightweight copy of the Real DOM first.";
+
+    const answers = useMemo(() => [
         "Real DOM directly updates the browser's display, while Virtual DOM updates a lightweight copy of the Real DOM first.",
         "Real DOM is only used with React, while Virtual DOM is a general concept in web development.",
         "Real DOM is faster than Virtual DOM for rendering complex applications.",
         "Virtual DOM is a part of the browser's rendering engine, while Real DOM is implemented by JavaScript libraries like React."
-    ];
-    const correctAnswer = "Real DOM directly updates the browser's display, while Virtual DOM updates a lightweight copy of the Real DOM first.";
+    ], []);
 
     const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
 
     useEffect(() => {
         setShuffledAnswers(shuffleArray([...answers]));
-    }, []);
+    }, [answers]);
 
     const handleAnswerSelection = (answer: string) => {
         setSelectedAnswer(answer);
@@ -42,7 +43,7 @@ function Question4({ number }: { number: number }) {
                         <input
                             type="radio"
                             id={`fourAnswer${index}`}
-                            name="fourAnswers"
+                            name={`fourAnswers-${number}`}
                             value={answer}
                             checked={selectedAnswer === answer}
                             onChange={() => handleAnswerSelection(answer)}
