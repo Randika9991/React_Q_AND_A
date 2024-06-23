@@ -16,10 +16,10 @@ function App() {
                 <NavBar/>
                 <Routes>
                     <Route path="*" element={<NotFound />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Login />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/quest1" element={<PartOneCollection />} />
-                    <Route path="/" element={<User />} />
+                    <Route path="/user" element={<User />} />
                 </Routes>
                 <Footer/>
             </BrowserRouter>

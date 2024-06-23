@@ -51,7 +51,7 @@ export class NavBar extends Component {
                         {isLoggedIn ? (
                             <>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/">About</Link>
+                                    <Link to="/user">About</Link>
                                 </li>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
                                     <Link to="/home">
@@ -62,7 +62,7 @@ export class NavBar extends Component {
                         ) : (
                             <>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/login">Login</Link>
+                                    <Link to="/">Login</Link>
                                 </li>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
                                     <Link to="/register">Register</Link>
