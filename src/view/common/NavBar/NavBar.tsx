@@ -2,23 +2,14 @@ import React, { Component } from "react";
 import icon from "../../../images/icons8-notes-64.png";
 import { Link } from "react-router-dom";
 
-export class NavBar extends Component {
-    constructor(props: {}) {
-        super(props);
-        const storedUsername = localStorage.getItem('login');
-        this.state = {
-            isLoggedIn: storedUsername === "hi",
-        };
-    }
+interface NavBarProps {
+    isLoggedIn: boolean;
+    handleLogout: () => void;
+}
 
-    handleLogout = () => {
-        localStorage.setItem('login', 'ado');
-        this.setState({ isLoggedIn: false, yourName: '' });
-    };
-
+class NavBar extends Component<NavBarProps> {
     render() {
-        // @ts-ignore
-        const { isLoggedIn } = this.state;
+        const { isLoggedIn, handleLogout } = this.props;
         return (
             <div className="p-4 bg-gray-700 flex items-center justify-between">
                 <div className="flex items-center">
@@ -28,7 +19,11 @@ export class NavBar extends Component {
                     </h1>
                     <ul className="list-none flex">
                         <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                            <Link to="/home">Home</Link>
+                            {isLoggedIn ? (
+                                <Link to="/home">Home</Link>
+                            ) : (
+                                <Link to="/home">Home</Link>
+                            )}
                         </li>
                         {isLoggedIn && (
                             <>
@@ -51,12 +46,10 @@ export class NavBar extends Component {
                         {isLoggedIn ? (
                             <>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/user">About</Link>
+                                    <Link to="/">About</Link>
                                 </li>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/home">
-                                        <button onClick={this.handleLogout}>Logout</button>
-                                    </Link>
+                                    <button onClick={handleLogout}>Logout</button>
                                 </li>
                             </>
                         ) : (
@@ -71,9 +64,7 @@ export class NavBar extends Component {
                         )}
                     </ul>
                 </div>
-
             </div>
-
         );
     }
 }

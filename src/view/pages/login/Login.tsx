@@ -1,38 +1,44 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-export class login extends Component {
-    constructor(props: {}) {
-        localStorage.setItem('login',String(false));
+interface LoginProps {
+    onLogin: () => void;
+}
+
+interface LoginState {
+    username: string;
+    isLoggedIn: boolean;
+}
+
+class Login extends Component<LoginProps, LoginState> {
+    constructor(props: LoginProps) {
         super(props);
+        localStorage.setItem('login', String(false));
         this.state = {
             username: '',
             isLoggedIn: false,
         };
     }
 
-    handleInputChange = (event: { target: { value: any; }; }) => {
+    handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ username: event.target.value });
     }
 
     handleClick = () => {
-        // @ts-ignore
-        if (this.state.username === "") {
+        const { username } = this.state;
+        if (username === "") {
             alert("Please enter a username.");
         } else {
-            // @ts-ignore
-            localStorage.setItem('login',String("hi"));
-            localStorage.setItem('hasReloaded', 'hui');
-            // @ts-ignore
-            localStorage.setItem('yourName', this.state.username);
+            localStorage.setItem('login', String("hi"));
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('yourName', username);
 
             this.setState({ isLoggedIn: true });
-
+            this.props.onLogin();
         }
     }
 
     render() {
-        // @ts-ignore
         const { isLoggedIn } = this.state;
         return (
             <div className="flex justify-center items-center h-screen bg-gray-800">
@@ -44,7 +50,6 @@ export class login extends Component {
                             type="text"
                             id="username"
                             name="username"
-                            // @ts-ignore
                             value={this.state.username}
                             onChange={this.handleInputChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
@@ -57,7 +62,7 @@ export class login extends Component {
                         style={{ backgroundColor: '#61dafb', color: '#fff' }}
                         onClick={this.handleClick}>
                         {isLoggedIn ? (
-                            <Link to="/user">Submit</Link>
+                            <Link to="/">Submit</Link>
                         ) : (
                             "Submit"
                         )}
@@ -68,4 +73,4 @@ export class login extends Component {
     }
 }
 
-export default login;
+export default Login;
