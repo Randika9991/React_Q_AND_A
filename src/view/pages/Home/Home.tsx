@@ -1,5 +1,5 @@
 import { Component } from "react";
-import homeImage from '../../../images/q-and-a-2453376_1280.jpg'; // Adjust the path according to your project structure
+import homeImage from '../../../images/q-and-a-2453376_1280.jpg';
 
 export class Home extends Component<any, any> {
     componentDidMount() {
@@ -7,10 +7,10 @@ export class Home extends Component<any, any> {
         const hasReloaded = localStorage.getItem('hasReloaded');
 
         if (storedUsername === "hi" && hasReloaded==="hui") {
-            localStorage.setItem('hasReloaded', 'ammo'); // Set the flag
+            localStorage.setItem('hasReloaded', 'ammo');
             window.location.reload();
         } else if (hasReloaded) {
-            localStorage.removeItem('hasReloaded'); // Clear the flag after reload
+            localStorage.removeItem('hasReloaded');
         }
     }
 
