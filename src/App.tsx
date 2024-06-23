@@ -41,9 +41,9 @@ function App() {
                         </>
                     ) : (
                         <>
-                            <Route path="/" element={<Login onLogin={handleLogin} />} />
-                            <Route path="*" element={<Navigate to="/home" />} />
-                            <Route path="/home" element={<Home />} />
+                            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                            <Route path="/" element={<Home />} />
+                            <Route path="*" element={<Home />} />
                         </>
                     )}
                 </Routes>

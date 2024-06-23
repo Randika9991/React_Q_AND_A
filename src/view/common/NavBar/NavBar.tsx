@@ -22,7 +22,7 @@ class NavBar extends Component<NavBarProps> {
                             {isLoggedIn ? (
                                 <Link to="/home">Home</Link>
                             ) : (
-                                <Link to="/home">Home</Link>
+                                <Link to="/">Home</Link>
                             )}
                         </li>
                         {isLoggedIn && (
@@ -55,7 +55,7 @@ class NavBar extends Component<NavBarProps> {
                         ) : (
                             <>
                                 <li className="mr-4 text-white cursor-pointer hover:text-green-400">
-                                    <Link to="/">Login</Link>
+                                    <Link to="/login">Login</Link>
                                 </li>
                             </>
                         )}
